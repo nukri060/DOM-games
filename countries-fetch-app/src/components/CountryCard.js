@@ -1,15 +1,14 @@
-async function getData() {
-    const url = "https://restcountries.com/v3.1/all";
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error(`Response status: ${response.status}`);
-      }
+// CountryCard.js
+export function createCountryCard(country) {
+    const card = document.createElement("div");
+    card.classList.add("country");
   
-      const json = await response.json();
-      console.log(json);
-    } catch (error) {
-      console.error(error.message);
-    }
-  }
+    card.innerHTML = `
+    <div class="flag" style="background-image: url('${country.flags.svg}')"></div>
+    <p>${country.name.common}</p>
+    <p>Population: <span>${country.population.toLocaleString()}</span></p>
+    <p>Region: <span>${country.region}</span></p>
+    `;
   
+    return card;
+}

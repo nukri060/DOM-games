@@ -1,4 +1,5 @@
-async function getData() {
+// fetchCountries.js
+export async function fetchCountries() {
     const url = "https://restcountries.com/v3.1/all";
     try {
         const response = await fetch(url);
@@ -6,11 +7,10 @@ async function getData() {
             throw new Error(`Response status: ${response.status}`);
         }
 
-        const json = await response.json();
-        console.log(json);
+        const countries = await response.json();
+        return countries;
     } catch (error) {
-        console.error(error.message);
+        console.error("Error fetching countries:", error.message);
+        return []; 
     }
 }
-
-getData(); 
